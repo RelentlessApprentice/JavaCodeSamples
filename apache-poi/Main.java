@@ -20,6 +20,29 @@ public class Main {
 		xlsToCsv();
 	}
 
+	private static void createXls() throws Exception {
+		Workbook workbook = new HSSFWorkbook();
+		
+		Sheet sheet1 = workbook.createSheet("first");
+		
+		Row row = sheet1.createRow(0);
+		row.createCell(0).setCellValue(5.7);
+		row.createCell(1).setCellValue("white");
+		row.createCell(5).setCellValue("green");
+		Row row3 = sheet1.createRow(3);
+		row3.createCell(2).setCellValue(true);
+		
+		FileOutputStream fileOut = null;
+		try {
+			fileOut = new FileOutputStream("input.xls");
+			workbook.write(fileOut);
+		} catch (Exception e){
+			e.printStackTrace();
+		} finally {
+			if (fileOut != null) fileOut.close();
+		}
+	}
+	
 	private static void xlsToCsv() throws Exception {
 		InputStream inputStream = null;
 		FileWriter writer = null;
@@ -59,29 +82,6 @@ public class Main {
 		} finally {
 			if (inputStream != null) inputStream.close();
 			if (writer != null) writer.close();
-		}
-	}
-
-	private static void createXls() throws Exception {
-		Workbook workbook = new HSSFWorkbook();
-		
-		Sheet sheet1 = workbook.createSheet("first");
-		
-		Row row = sheet1.createRow(0);
-		row.createCell(0).setCellValue(5.7);
-		row.createCell(1).setCellValue("white");
-		row.createCell(5).setCellValue("green");
-		Row row3 = sheet1.createRow(3);
-		row3.createCell(2).setCellValue(true);
-		
-		FileOutputStream fileOut = null;
-		try {
-			fileOut = new FileOutputStream("output.xls");
-			workbook.write(fileOut);
-		} catch (Exception e){
-			e.printStackTrace();
-		} finally {
-			if (fileOut != null) fileOut.close();
 		}
 	}
 	
