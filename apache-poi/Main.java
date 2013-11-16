@@ -16,8 +16,8 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		xlsToCsv();
 		createXls();
+		xlsToCsv();
 	}
 
 	private static void xlsToCsv() throws Exception {
