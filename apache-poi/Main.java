@@ -43,9 +43,7 @@ public class Main {
 									evaluator.evaluateInCell(cell);
 								}
 								value = cell.toString();
-							} else {
-								
-							}
+							} 
 							writer.append("\"").append(value).append("\"").append(";");
 						}
 					}
