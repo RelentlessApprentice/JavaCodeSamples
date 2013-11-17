@@ -4,7 +4,7 @@ import java.rmi.server.UnicastRemoteObject;
 
 public class ClientSideModel extends UnicastRemoteObject implements TheModelInterface {
 
-    private static final long serialVersionUID = 3474253300296222212L;
+    private static final long serialVersionUID = -8827712985532223959L;
     private String sentence = "";
 
     protected ClientSideModel() throws RemoteException {
