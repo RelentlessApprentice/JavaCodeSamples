@@ -65,6 +65,12 @@ public class TheServer extends UnicastRemoteObject implements TheInterface {
         return model;
     }
 
+    public void tryChangingValueOfRemoteObject(TheModelInterface clientSideModel) throws RemoteException {
+        System.out.println("Old value: "+clientSideModel.getValue());
+        clientSideModel.add("Added by server.");
+        System.out.println("New value: "+clientSideModel.getValue());
+    }
+    
     public void tryChangingValue(StringBuilder sb) throws RemoteException {
         System.out.println("Old value: "+sb.toString());
         sb.append("I told you to go away.");

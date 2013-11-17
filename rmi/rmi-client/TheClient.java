@@ -11,6 +11,8 @@ import java.rmi.registry.Registry;
  *           java TheClient localhost ref A
  *           java TheClient localhost ref B
  *           
+ * - [ref2] : java TheClient localhost ref2
+ * 
  * - [val] : java TheClient localhost val
  */
 public class TheClient {
@@ -25,9 +27,12 @@ public class TheClient {
 			    talk(args, remoteObject);
 			} else if("ref".equalsIgnoreCase(testType)){
 			    testReferences(args, remoteObject);
+			} else if("ref2".equalsIgnoreCase(testType)){
+			    testReferencesFromClientToServer(remoteObject);
 			} else if("val".equalsIgnoreCase(testType)){
 			    testPassingByValue(remoteObject);
 			}
+
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -65,6 +70,16 @@ public class TheClient {
         System.out.println("Old value: "+sb.toString());
         remoteObject.tryChangingValue(sb);
         System.out.println("New value: "+sb.toString());
+    }
+    
+    private static void testReferencesFromClientToServer(
+            TheInterface remoteObject) throws RemoteException {
+        
+        TheModelInterface clientSideModel = new ClientSideModel();
+        clientSideModel.add("Initial value set by client.");
+        System.out.println("Old value: "+clientSideModel.getValue());
+        remoteObject.tryChangingValueOfRemoteObject(clientSideModel);
+        System.out.println("New value: "+clientSideModel.getValue());
     }
 	
 }
