@@ -17,27 +17,27 @@ import java.rmi.registry.Registry;
  */
 public class TheClient {
 
-	public static void main(String args[]) {
-		try {
-			Registry registry = LocateRegistry.getRegistry(args[0]);
-			TheInterface remoteObject = (TheInterface) registry.lookup("TheServer");
+    public static void main(String args[]) {
+        try {
+        	Registry registry = LocateRegistry.getRegistry(args[0]);
+        	TheInterface remoteObject = (TheInterface) registry.lookup("TheServer");
 			
-			String testType = args[1];
-			if("talk".equalsIgnoreCase(testType)){
-			    talk(args, remoteObject);
-			} else if("ref".equalsIgnoreCase(testType)){
-			    testReferences(args, remoteObject);
-			} else if("ref2".equalsIgnoreCase(testType)){
-			    testReferencesFromClientToServer(remoteObject);
-			} else if("val".equalsIgnoreCase(testType)){
-			    testPassingByValue(remoteObject);
-			}
+        	String testType = args[1];
+        	if("talk".equalsIgnoreCase(testType)){
+        	    talk(args, remoteObject);
+        	} else if("ref".equalsIgnoreCase(testType)){
+        	    testReferences(args, remoteObject);
+        	} else if("ref2".equalsIgnoreCase(testType)){
+        	    testReferencesFromClientToServer(remoteObject);
+        	} else if("val".equalsIgnoreCase(testType)){
+        	    testPassingByValue(remoteObject);
+        	}
 
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+        } catch (Exception e) {
+        	e.printStackTrace();
+        }
+    }
 
     private static void talk(String[] args, TheInterface remoteObject)
             throws RemoteException, InterruptedException {
